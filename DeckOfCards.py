@@ -26,7 +26,10 @@ class DeckOfCards():
             i = 0
             for i in range(len(self.faces)):
                 self.deck.append(Card(suit, self.faces[i], self.values[i]))
-                
+
+    def add_decks(self, num_decks):
+        for _ in range(num_decks - 1):  
+            self.deck.extend(self.deck[:])
                 
     def shuffle_deck(self):     # Shuffle deck
         random.shuffle(self.deck)
@@ -91,3 +94,10 @@ class DeckOfCards():
             for card in cards:
                 print(card)
             print("-- -- -- -- -- -- -- -- -- --")
+
+
+# Deck functions not connected to the class
+
+def calculate_decks_needed(num_players, players_per_deck):
+    num_decks_needed = (num_players + players_per_deck - 1) // players_per_deck
+    return num_decks_needed

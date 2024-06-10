@@ -5,6 +5,9 @@ class Player():
 
     def __str__(self):
         return f"Player: {self.name}"
+    
+    def sort_hand(self):
+        self.hand.sort(key=lambda card: card.val)
 
 class Players: 
     def __init__(self):
@@ -13,7 +16,7 @@ class Players:
     def add_players(self, min_players, max_players):
         count = 1
         while True:
-            name = input(f"Player {count} Name ('s' to stop adding): ")
+            name = input(f"Player {count} Name ('s' to stop adding): ").strip()
             if name.lower() == 's':
                 if len(self.players) < min_players:
                     print(f'Need at least {min_players - len(self.players)} more players!')
@@ -26,6 +29,9 @@ class Players:
                     print(f"Reached maximum of {max_players} players!")
                     break
         return self.players
+    
+    def count_players(self):
+        return len(self.players)
 
     def set_positions(self):
         for i, player in enumerate(self.players, start=1):
@@ -36,6 +42,8 @@ class Players:
             for player in self.players:
                 if len(deck.deck) > 0:
                     player.hand.append(deck.deck.pop(0))
+        for player in self.players:         # Sort each player's hand after dealing
+            player.sort_hand()
 
     def show_players(self):
         for player in self.players:
