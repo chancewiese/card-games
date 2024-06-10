@@ -10,8 +10,8 @@ from Players import *
 def prepare_players():
     players = Players()
     players.add_players(2,10)
-    players.set_positions()
-    return players
+    num_players = players.count_players()
+    return players, num_players
 
 def prepare_deck(num_players):
     deck = DeckOfCards()
@@ -21,10 +21,14 @@ def prepare_deck(num_players):
     return deck
 
 # Starting values and settings
-players = prepare_players()             # Set players
-num_players = players.count_players()   # Find number of players
+players, num_players = prepare_players()             # Set players & find number of players
 deck = prepare_deck(num_players)        # Set deck
+players.deal_cards(deck)                # Deal cards
+players.show_players()                  # Show players and their hands
 
 
-players.deal_cards(deck)
-players.show_players()
+
+
+
+# def play(deck, players):
+    

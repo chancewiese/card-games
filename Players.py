@@ -14,28 +14,29 @@ class Players:
         self.players = []
 
     def add_players(self, min_players, max_players):
+        players = []
         count = 1
         while True:
             name = input(f"Player {count} Name ('s' to stop adding): ").strip()
             if name.lower() == 's':
-                if len(self.players) < min_players:
-                    print(f'Need at least {min_players - len(self.players)} more players!')
+                if len(players) < min_players:
+                    print(f'Need at least {min_players - len(players)} more players!')
                 else:
                     break
             else:
-                self.players.append(Player(name))
+                player = Player(name)
+                player.position = count  # Set position
+                players.append(player)
                 count += 1
-                if len(self.players) == max_players:
+                if len(players) == max_players:
                     print(f"Reached maximum of {max_players} players!")
                     break
+        
+        self.players = players  # Update the players list in the class
         return self.players
     
     def count_players(self):
         return len(self.players)
-
-    def set_positions(self):
-        for i, player in enumerate(self.players, start=1):
-            player.position = i
 
     def deal_cards(self, deck):
         while len(deck.deck) > 0:
