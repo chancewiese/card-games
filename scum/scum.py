@@ -43,5 +43,6 @@ deck = prepare_deck()
 players = Players()
 players.add_players(2,8)
 players.set_positions()
+players.deal_cards(deck)
 
 players.show_players()

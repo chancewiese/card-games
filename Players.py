@@ -1,6 +1,7 @@
 class Player(): 
     def __init__(self, name):
         self.name = name
+        self.hand = []
 
     def __str__(self):
         return f"Player: {self.name}"
@@ -31,12 +32,15 @@ class Players:
             player.position = i
 
     def deal_cards(self, deck):
-        num_players = len(self.players)
-        num_cards = len(deck.deck) // num_players
-        for player in self.players:
-            player.hand = deck.deck[:num_cards]
-            del deck.deck[:num_cards]
+        while len(deck.deck) > 0:
+            for player in self.players:
+                if len(deck.deck) > 0:
+                    player.hand.append(deck.deck.pop(0))
 
     def show_players(self):
         for player in self.players:
             print(f"Position: {player.position}, Name: {player.name}")
+            print("Hand:")
+            for card in player.hand:
+                print(card)  # This will call the __str__ method of the Card class
+            print("-- -- -- -- -- -- -- -- -- --")
