@@ -1,6 +1,5 @@
 import random      # Random for shuffling
 
-
 class Card(): 
     def __init__(self, suit, face, value):
         self.suit = suit
