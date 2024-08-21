@@ -2,6 +2,8 @@ class Player():
     def __init__(self, name):
         self.name = name
         self.hand = []
+        self.position = None
+        self.win_count = 0
 
     def __str__(self):
         return f"Player: {self.name}"
@@ -36,9 +38,14 @@ class Players:
                 if len(players) == max_players:
                     print(f"Reached maximum of {max_players} players!")
                     break
-        
+        print()
         self.players = players  # Update the players list in the class
         return self.players
+    
+    def add_player_manual(self, name, position=None):
+        player = Player(name)
+        player.position = position
+        self.players.append(player)
     
     def count_players(self):
         return len(self.players)
