@@ -12,7 +12,6 @@ class Player():
         self.hand.sort(key=lambda card: card.val)
 
     def show_hand(self):
-        print(f"{self.name}'s Hand:")
         for card in self.hand:
             print(card)
 
