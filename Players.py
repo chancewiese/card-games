@@ -30,7 +30,9 @@ class Players:
                 else:
                     break
             else:
-                self.add_player_manual(name, count)
+                player = Player(name)
+                player.position = count
+                players.append(player)
                 count += 1
                 if len(players) == max_players:
                     print(f"Reached maximum of {max_players} players!")
